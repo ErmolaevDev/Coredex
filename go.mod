@@ -1,6 +1,6 @@
 module coredex
 
-go 1.22
+go 1.25.0
 
 require (
 	github.com/gin-contrib/cors v1.7.2
@@ -10,7 +10,7 @@ require (
 	github.com/jackc/pgx/v5 v5.7.2
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.31.0
-	golang.org/x/time v0.6.0
+	golang.org/x/time v0.15.0
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
 )
