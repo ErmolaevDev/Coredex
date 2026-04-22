@@ -1,0 +1,153 @@
+
+> my-project@0.1.0 dev D:\Coredex
+> concurrently -n api,web -c blue,magenta "go run ./cmd/coredex" "next dev"
+
+[web] ▲ Next.js 16.2.0 (Turbopack)
+[web] - Local:         http://localhost:3000
+[web] - Network:       http://172.18.0.1:3000
+[web] - Environments: .env.local, .env
+[web] ✓ Ready in 307ms
+[api] time=2026-04-14T03:37:34.422+03:00 level=INFO msg=coredex_starting env=development http_port=8080 log_level=info shutdown_timeout=30s cors_enabled=true rate_limit_enabled=false
+[api] time=2026-04-14T03:37:34.464+03:00 level=INFO msg=database_connected host=127.0.0.1 port=5432 dbname=coredex max_open_conns=25 max_idle_conns=5
+[api] time=2026-04-14T03:37:34.594+03:00 level=INFO msg=database_migrate_ok
+[api] [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+[api]  - using env:	export GIN_MODE=release
+[api]  - using code:	gin.SetMode(gin.ReleaseMode)
+[api] 
+[api] [GIN-debug] GET    /health                   --> coredex/internal/handlers.(*HealthHandler).Get-fm (6 handlers)
+[api] [GIN-debug] POST   /auth/register            --> coredex/internal/handlers.(*AuthHandler).Register-fm (6 handlers)
+[api] [GIN-debug] POST   /auth/login               --> coredex/internal/handlers.(*AuthHandler).Login-fm (6 handlers)
+[api] [GIN-debug] POST   /v1/demo/contact          --> coredex/internal/handlers.(*DemoHandler).PostContact-fm (6 handlers)
+[api] [GIN-debug] GET    /v1/me                    --> coredex/internal/handlers.(*AuthHandler).Me-fm (7 handlers)
+[api] [GIN-debug] POST   /family                   --> coredex/internal/handlers.(*FamilyHandler).Create-fm (7 handlers)
+[api] [GIN-debug] POST   /family/invite            --> coredex/internal/handlers.(*FamilyHandler).Invite-fm (7 handlers)
+[api] [GIN-debug] GET    /family                   --> coredex/internal/handlers.(*FamilyHandler).Get-fm (7 handlers)
+[api] [GIN-debug] GET    /subscriptions            --> coredex/internal/handlers.(*SubscriptionHandler).List-fm (7 handlers)
+[api] [GIN-debug] POST   /subscriptions            --> coredex/internal/handlers.(*SubscriptionHandler).Create-fm (7 handlers)
+[api] [GIN-debug] PUT    /subscriptions/:id        --> coredex/internal/handlers.(*SubscriptionHandler).Update-fm (7 handlers)
+[api] [GIN-debug] DELETE /subscriptions/:id        --> coredex/internal/handlers.(*SubscriptionHandler).Delete-fm (7 handlers)
+[api] [GIN-debug] GET    /analytics/summary        --> coredex/internal/handlers.(*AnalyticsHandler).Summary-fm (7 handlers)
+[api] [GIN-debug] GET    /notifications            --> coredex/internal/handlers.(*NotificationHandler).List-fm (7 handlers)
+[api] [GIN-debug] POST   /assets                   --> coredex/internal/handlers.(*AssetHandler).Create-fm (7 handlers)
+[api] [GIN-debug] GET    /assets                   --> coredex/internal/handlers.(*AssetHandler).List-fm (7 handlers)
+[api] time=2026-04-14T03:37:34.594+03:00 level=INFO msg=coredex_listen addr=:8080
+[web] 
+[web]  HEAD / 200 in 372ms (next.js: 120ms, application-code: 252ms)
+[api] time=2026-04-14T03:37:50.047+03:00 level=INFO msg=http_request method=GET path=/health status=200 bytes=78 latency=0s client_ip=127.0.0.1
+[api] time=2026-04-14T03:37:53.948+03:00 level=INFO msg=http_request method=GET path=/health status=200 bytes=78 latency=0s client_ip=127.0.0.1
+[web]  GET / 200 in 89ms (next.js: 2ms, application-code: 87ms)
+[web] ✓ Compiled in 107ms
+[web]  GET / 200 in 95ms (next.js: 29ms, application-code: 65ms)
+[web]  GET / 200 in 25ms (next.js: 1632µs, application-code: 23ms)
+[web]  HEAD /login 200 in 117ms (next.js: 17ms, application-code: 100ms)
+[web]  GET / 200 in 120ms (next.js: 1855µs, application-code: 118ms)
+[web]  GET /login 200 in 12ms (next.js: 1832µs, application-code: 11ms)
+[api] time=2026-04-14T03:42:45.592+03:00 level=INFO msg=http_request method=POST path=/auth/register status=400 bytes=373 latency=0s client_ip=127.0.0.1
+[api] time=2026-04-14T03:42:47.388+03:00 level=INFO msg=http_request method=POST path=/auth/register status=400 bytes=373 latency=0s client_ip=127.0.0.1
+[api] 
+[api] 2026/04/14 03:42:57 [31;1mD:/Coredex/internal/repositories/user_repository.go:23 [35;1mОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "idx_users_email" (SQLSTATE 23505)
+[api] [0m[33m[1.997ms] [34;1m[rows:0][0m INSERT INTO "users" ("email","password","created_at") VALUES ('admin@jetfive.ru','$2a$10$ZHL67oRtq9qkUPyYWTVsauJ2iSxmOsHzWcXbydCVsIqgGB0laf6VG','2026-04-14 03:42:57.325') RETURNING "id"
+[api] time=2026-04-14T03:42:57.328+03:00 level=INFO msg=http_request method=POST path=/auth/register status=409 bytes=72 latency=46.1811ms client_ip=127.0.0.1
+[api] 
+[api] 2026/04/14 03:42:58 [31;1mD:/Coredex/internal/repositories/user_repository.go:23 [35;1mОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "idx_users_email" (SQLSTATE 23505)
+[api] [0m[33m[0.000ms] [34;1m[rows:0][0m INSERT INTO "users" ("email","password","created_at") VALUES ('admin@jetfive.ru','$2a$10$gCBoYVbWDH6A4x8JaS13/epCrD8VUFrTBnjSMhXtEAzbe/XjyRMju','2026-04-14 03:42:58.016') RETURNING "id"
+[api] time=2026-04-14T03:42:58.016+03:00 level=INFO msg=http_request method=POST path=/auth/register status=409 bytes=72 latency=40.1141ms client_ip=127.0.0.1
+[web]  GET / 200 in 20ms (next.js: 1468µs, application-code: 18ms)
+[web]  GET /login 200 in 13ms (next.js: 1911µs, application-code: 11ms)
+[api] time=2026-04-14T03:43:03.524+03:00 level=INFO msg=http_request method=POST path=/auth/login status=400 bytes=367 latency=0s client_ip=127.0.0.1
+[web]  GET /dashboard 200 in 34ms (next.js: 15ms, application-code: 19ms)
+[web]  GET /login 200 in 37ms (next.js: 3ms, application-code: 35ms)
+[web]  GET /login 200 in 19ms (next.js: 2ms, application-code: 16ms)
+[api] time=2026-04-14T03:43:40.483+03:00 level=INFO msg=http_request method=POST path=/auth/register status=400 bytes=357 latency=0s client_ip=127.0.0.1
+[api] time=2026-04-14T03:44:33.190+03:00 level=INFO msg=http_request method=POST path=/auth/register status=400 bytes=357 latency=0s client_ip=127.0.0.1
+[api] time=2026-04-14T03:44:33.637+03:00 level=INFO msg=http_request method=POST path=/auth/register status=400 bytes=357 latency=0s client_ip=127.0.0.1
+[web]  GET / 200 in 19ms (next.js: 1220µs, application-code: 18ms)
+[web]  GET / 200 in 91ms (next.js: 1210µs, application-code: 90ms)
+[web]  HEAD / 200 in 72ms (next.js: 1255µs, application-code: 71ms)
+[api] time=2026-04-14T03:45:29.185+03:00 level=INFO msg=http_request method=GET path=/health status=200 bytes=78 latency=0s client_ip=127.0.0.1
+[api] time=2026-04-14T03:45:29.216+03:00 level=INFO msg=http_request method=GET path=/health status=200 bytes=78 latency=0s client_ip=127.0.0.1
+[web]  GET / 200 in 86ms (next.js: 1577µs, application-code: 85ms)
+[web]  GET /login 200 in 11ms (next.js: 1347µs, application-code: 10ms)
+[api] 
+[api] 2026/04/14 03:46:13 [31;1mD:/Coredex/internal/repositories/user_repository.go:23 [35;1mОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "idx_users_email" (SQLSTATE 23505)
+[api] [0m[33m[1.531ms] [34;1m[rows:0][0m INSERT INTO "users" ("email","password","created_at") VALUES ('admin@jetfive.ru','$2a$10$HTDfCUlYHdKitOugtaMxTOCiO8KuGJOeo4dYhbi7MArrLn14OdCVK','2026-04-14 03:46:13.437') RETURNING "id"
+[api] time=2026-04-14T03:46:13.439+03:00 level=INFO msg=http_request method=POST path=/auth/register status=409 bytes=72 latency=45.0431ms client_ip=127.0.0.1
+[api] 
+[api] 2026/04/14 03:46:14 [31;1mD:/Coredex/internal/repositories/user_repository.go:23 [35;1mОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "idx_users_email" (SQLSTATE 23505)
+[api] [0m[33m[0.000ms] [34;1m[rows:0][0m INSERT INTO "users" ("email","password","created_at") VALUES ('admin@jetfive.ru','$2a$10$4MO/yM/BdlMcTnuXLQwjJeYyICSAPNV1K7u9.fid9WyynypoQME1i','2026-04-14 03:46:14.214') RETURNING "id"
+[api] time=2026-04-14T03:46:14.214+03:00 level=INFO msg=http_request method=POST path=/auth/register status=409 bytes=72 latency=44.4875ms client_ip=127.0.0.1
+[api] time=2026-04-14T03:46:15.999+03:00 level=INFO msg=http_request method=POST path=/auth/login status=200 bytes=187 latency=44.1578ms client_ip=127.0.0.1
+[web]  GET /dashboard 200 in 11ms (next.js: 1250µs, application-code: 10ms)
+[api] 
+[api] 2026/04/14 03:46:16 [31;1mD:/Coredex/internal/repositories/family_repository.go:49 [35;1mrecord not found
+[api] [0m[33m[0.502ms] [34;1m[rows:0][0m SELECT * FROM "family_members" WHERE user_id = 1 ORDER BY "family_members"."id" LIMIT 1
+[api] time=2026-04-14T03:46:16.079+03:00 level=INFO msg=http_request method=GET path=/analytics/summary status=200 bytes=61 latency=502.3µs client_ip=127.0.0.1
+[api] 
+[api] 2026/04/14 03:46:16 [31;1mD:/Coredex/internal/repositories/family_repository.go:49 [35;1mrecord not found
+[api] [0m[33m[0.000ms] [34;1m[rows:0][0m SELECT * FROM "family_members" WHERE user_id = 1 ORDER BY "family_members"."id" LIMIT 1
+[api] time=2026-04-14T03:46:16.082+03:00 level=INFO msg=http_request method=GET path=/analytics/summary status=200 bytes=61 latency=504.7µs client_ip=127.0.0.1
+[api] 
+[api] 2026/04/14 03:46:16 [31;1mD:/Coredex/internal/repositories/family_repository.go:49 [35;1mrecord not found
+[api] [0m[33m[127.528ms] [34;1m[rows:0][0m SELECT * FROM "family_members" WHERE user_id = 1 ORDER BY "family_members"."id" LIMIT 1
+[api] time=2026-04-14T03:46:16.207+03:00 level=INFO msg=http_request method=GET path=/subscriptions status=200 bytes=20 latency=128.0324ms client_ip=127.0.0.1
+[web] [browser] In HTML, <div> cannot be a descendant of <p>.
+[web] This will cause a hydration error.
+[web] 
+[web]   ...
+[web]     <ClientPageRoot Component={function DashboardPage} serverProvidedParams={{...}}>
+[web]       <DashboardPage params={Promise} searchParams={Promise}>
+[web]         <div className="flex h-scr...">
+[web]           <DashboardSidebar>
+[web]           <div className="flex-1 fle...">
+[web]             <DashboardTopbar>
+[web]             <main className="flex-1 ove...">
+[web]               <div className="max-w-7xl ...">
+[web]                 <OverviewCards monthlySpend={0} activeSubscriptions={0} unusedSubscriptions={0} loading={true} ...>
+[web]                   <div className="space-y-4">
+[web]                     <div className="grid grid-...">
+[web]                       <Card className="relative g..." style={{...}}>
+[web]                         <div data-slot="card" className="bg-card te..." style={{...}}>
+[web]                           <CardContent className="p-6">
+[web]                             <div data-slot="card-content" className="p-6">
+[web]                               <div className="flex items...">
+[web]                                 <div className="space-y-2">
+[web]                                   <p>
+[web] >                                 <p className="text-3xl font-bold text-foreground">
+[web]                                     <Skeleton className="h-9 w-28">
+[web] >                                     <div data-slot="skeleton" className="bg-accent animate-pulse rounded-md h-9 w-28">
+[web]                                   ...
+[web]                                 ...
+[web]                               ...
+[web]                       ...
+[web]                 ...
+[web]  
+[web] [browser] <p> cannot contain a nested <div>.
+[web] See this log for the ancestor stack trace. 
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[web]  GET /jd.jpg 404 in 152ms (next.js: 21ms, application-code: 130ms)
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[web]  GET /sd.jpg 404 in 149ms (next.js: 67ms, application-code: 82ms)
+[web]  GET /avatar.jpg 404 in 155ms (next.js: 56ms, application-code: 98ms)
+[web]  GET /md.jpg 404 in 142ms (next.js: 86ms, application-code: 56ms)
+[api] 
+[api] 2026/04/14 03:46:16 [31;1mD:/Coredex/internal/repositories/family_repository.go:49 [35;1mrecord not found
+[api] [0m[33m[0.000ms] [34;1m[rows:0][0m SELECT * FROM "family_members" WHERE user_id = 1 ORDER BY "family_members"."id" LIMIT 1
+[api] time=2026-04-14T03:46:16.282+03:00 level=INFO msg=http_request method=GET path=/subscriptions status=200 bytes=20 latency=0s client_ip=127.0.0.1
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[web] [browser] The width(795) and height(280) are both fixed numbers,
+[web]        maybe you don't need to use a ResponsiveContainer.
+[api] time=2026-04-14T04:07:44.921+03:00 level=INFO msg=shutdown_signal_received signal=terminated
+[api] time=2026-04-14T04:07:44.921+03:00 level=INFO msg=http_server_stopped
+[api] time=2026-04-14T04:07:44.921+03:00 level=INFO msg=database_closed
+[api] time=2026-04-14T04:07:44.921+03:00 level=INFO msg=coredex_shutdown_complete
+[api] ^C
+[api] go run ./cmd/coredex exited with code 3221225786
+[web] next dev exited with code 3221225786
+ ELIFECYCLE  Command failed with exit code 3221225786.
