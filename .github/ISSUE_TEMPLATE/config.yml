@@ -1,0 +1,39 @@
+name: "Config"
+description: "Report an issue with configuration or deployment"
+labels: ["infrastructure", "triage"]
+
+body:
+  - type: textarea
+    id: issue
+    attributes:
+      label: "Issue"
+      description: "Describe the configuration/deployment issue"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: "Deployment Type"
+      options:
+        - "Docker Compose"
+        - "Kubernetes (Helm)"
+        - "Self-Hosted VPS"
+        - "Vercel"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: "Configuration (Sanitized)"
+      description: "Share your configuration (remove secrets!)"
+      render: yaml
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Error Logs"
+      description: "Paste relevant error messages"
+      render: bash

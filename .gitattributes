@@ -1,0 +1,22 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto
+
+# Binaries
+*.bin binary
+*.exe binary
+*.o binary
+*.so binary
+
+# Code
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.go text eol=lf
+*.md text eol=lf
+
+# Git
+.git* text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf

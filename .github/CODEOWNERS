@@ -1,0 +1,33 @@
+# CODEOWNERS file for Coredex
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything
+* @ErmolaevDev
+
+# Frontend
+/app/ @ErmolaevDev
+/components/ @ErmolaevDev
+/lib/ @ErmolaevDev
+
+# Backend
+/internal/ @ErmolaevDev
+/cmd/ @ErmolaevDev
+
+# DevOps & Infrastructure
+/deploy/ @ErmolaevDev
+/helm/ @ErmolaevDev
+/terraform/ @ErmolaevDev
+Dockerfile @ErmolaevDev
+docker-compose.yml @ErmolaevDev
+
+# Configuration
+/.github/ @ErmolaevDev
+.editorconfig @ErmolaevDev
+.gitignore @ErmolaevDev
+.nvmrc @ErmolaevDev
+
+# Security & Docs
+SECURITY.md @ErmolaevDev
+CONTRIBUTING.md @ErmolaevDev
+LICENSE @ErmolaevDev
+README.md @ErmolaevDev

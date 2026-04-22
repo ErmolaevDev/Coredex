@@ -1,0 +1,82 @@
+name: "🐛 Bug Report"
+description: "Report a bug to help us improve"
+labels: ["bug", "triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! 🙏
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: "Prerequisites"
+      description: "Please confirm the following:"
+      options:
+        - label: "I am running the latest version"
+          required: true
+        - label: "I have searched the existing issues"
+          required: true
+        - label: "I have read the CONTRIBUTING guidelines"
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Describe the bug clearly and concisely"
+      placeholder: "When I do X, Y happens unexpectedly..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Steps to Reproduce"
+      description: "How can we reproduce this bug?"
+      placeholder: |
+        1. Click on "..."
+        2. Type "..."
+        3. See error
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behavior"
+      description: "What should happen instead?"
+      placeholder: "I expected X to happen"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: "Environment"
+      options:
+        - "Docker Compose"
+        - "Local Development"
+        - "Self-Hosted VPS"
+        - "Kubernetes"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Error Logs / Screenshots"
+      description: "Paste any error logs or screenshots"
+      render: bash
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional Context"
+      description: "Any other context that might be helpful?"

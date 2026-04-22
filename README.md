@@ -1,3 +1,321 @@
+# Coredex
+
+> **Zero-Knowledge Digital Asset OS** — Unified platform for managing family subscriptions, licenses, API keys, domains, crypto, and digital legacy with military-grade encryption.
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![Go](https://img.shields.io/badge/Go-1.22-00ADD8?logo=go)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+## 📖 Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Quick Start](#quick-start)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Security](#security)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+Coredex is a modern **SaaS platform** designed to give families complete visibility and control over their digital assets and financial subscriptions. Built with privacy-first principles using zero-knowledge architecture.
+
+### Why Coredex?
+
+- **🔐 Zero-Knowledge**: Your data is encrypted. We can't see it.
+- **👨‍👩‍👧‍👦 Family-First**: Share access, not passwords. Granular permissions.
+- **💰 Financial Intelligence**: Track subscriptions, detect savings opportunities, understand spending.
+- **🛡️ Security**: Military-grade encryption, no plain text secrets, audit-ready.
+- **🚀 Production-Ready**: Docker, Kubernetes-friendly, scalable architecture.
+
+## Features
+
+### Asset Management
+- 📦 Organize digital assets: subscriptions, licenses, API keys, domains, crypto, devices
+- 🔍 Track expiration dates and renewal schedules
+- 📊 Asset distribution dashboard with visualization
+- 🏷️ Categorization and tagging system
+
+### Subscription Intelligence
+- 📅 Upcoming payments timeline
+- 💡 AI-powered savings recommendations
+- 🔄 Subscription usage tracking
+- 💰 Monthly/yearly spend analysis
+
+### Family Governance
+- 👥 Member management with role-based access
+- 🔐 Hierarchical permissions (owner, manager, viewer, child)
+- 💳 Shared budget allocation
+- 🎯 Child safe mode with limits
+
+### Security & Compliance
+- 🔒 End-to-end encryption (AES-256-GCM)
+- 🛡️ Zero-Knowledge design (server never sees plaintext)
+- ✅ GDPR-ready architecture
+- 📋 Audit logging for compliance
+- 🔑 JWT token-based auth with refresh tokens
+
+### Digital Legacy
+- 👤 Emergency contacts management
+- 📦 Digital asset inheritance planning
+- 🏠 Legacy transfer on death
+- 📝 Custom emergency instructions
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | Next.js 16, React 19, TypeScript 5 |
+| **Styling** | Tailwind CSS, Radix UI |
+| **Charts** | Recharts |
+| **Backend API** | Go 1.22, Gin Web Framework |
+| **Database** | PostgreSQL 16 |
+| **ORM** | GORM |
+| **Authentication** | JWT (HS256) with refresh tokens |
+| **Encryption** | crypto/aes (Go standard lib) |
+| **Containerization** | Docker, Docker Compose |
+| **Package Manager** | pnpm (frontend) |
+
+## Quick Start
+
+### Prerequisites
+
+```bash
+# Required
+- Node.js 20+ (or use nvm)
+- Go 1.22+
+- Docker & Docker Compose
+- Git
+
+# Verify
+node --version   # v20.11.0+
+go version        # go1.22+
+docker --version  # Docker 24+
+pnpm --version    # 8+
+```
+
+### Using Docker Compose (Recommended)
+
+```bash
+# Clone repository
+git clone https://github.com/ErmolaevDev/Coredex.git
+cd Coredex
+
+# Copy example environment
+cp deploy/docker.env.example deploy/docker.env
+
+# Build and run
+docker-compose up --build
+
+# Access
+echo "Frontend: http://localhost:3000"
+echo "Backend:  http://localhost:8080"
+echo "Health:   http://localhost:8080/health"
+```
+
+### Manual Setup (Development)
+
+```bash
+# Install dependencies
+pnpm install
+
+# Setup environment
+cp .env.example .env.local
+# Edit .env.local with your config
+
+# Run both frontend & backend concurrently
+pnpm dev
+
+# Or run separately
+pnpm dev:web    # Next.js on :3000
+pnpm dev:api    # Go API on :8080
+```
+
+## Development
+
+### Project Structure
+
+```
+Coredex/
+├── app/                  # Next.js pages & routes
+├── components/           # React components
+├── internal/             # Go backend
+│   ├── handlers/         # HTTP handlers
+│   ├── services/         # Business logic
+│   ├── models/           # Data models
+│   └── ...
+├── lib/                  # Shared utilities
+├── cmd/coredex/          # Go binary entrypoint
+└── deploy/               # Deployment configs
+```
+
+### Development Commands
+
+```bash
+# Install & setup
+pnpm install
+cp .env.example .env.local
+
+# Development
+pnpm dev               # Both frontend & backend
+pnpm dev:web          # Next.js only
+pnpm dev:api          # Go API only
+
+# Testing & Linting
+pnpm lint             # ESLint
+pnpm type-check       # TypeScript
+go test ./...         # Go tests
+
+# Formatting
+pnpm format           # Prettier
+
+# Docker
+docker-compose up --build
+docker-compose down
+```
+
+### Environment Variables
+
+Create `.env.local`:
+
+```env
+# App
+COREDEX_ENV=development
+COREDEX_HTTP_PORT=8080
+
+# Database
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_USER=coredex
+DB_PASSWORD=coredex_password
+
+# Auth
+JWT_SECRET=your-secret-min-32-chars
+JWT_EXPIRES_IN=24h
+
+# Encryption
+VAULT_ENCRYPTION_KEY=base64-encoded-32-byte-key
+```
+
+**⚠️ NEVER commit `.env` files!**
+
+## Deployment
+
+### Docker Compose
+
+```bash
+docker-compose up -d
+docker-compose ps
+docker-compose logs -f
+```
+
+### Kubernetes (Helm)
+
+```bash
+helm install coredex ./helm/coredex \
+  --values helm/coredex/values.yaml \
+  --namespace production
+```
+
+### Self-Hosted VPS
+
+```bash
+# Ubuntu 22.04+
+git clone https://github.com/ErmolaevDev/Coredex.git
+cd Coredex
+cp deploy/docker.env.example deploy/docker.env
+# Edit deploy/docker.env with production values
+docker-compose up -d
+```
+
+### Production Checklist
+
+```
+☑ Change all default credentials
+☑ Use strong JWT_SECRET (min 32 chars, random)
+☑ Use strong VAULT_ENCRYPTION_KEY
+☑ Enable HTTPS with valid SSL certificate
+☑ Set CORS to production domain only
+☑ Enable rate limiting
+☑ Regular dependency audits
+☑ Setup monitoring & alerting
+```
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for:
+- Responsible vulnerability disclosure
+- Security best practices
+- Known limitations
+- Security standards
+
+**Key Security Features:**
+- ✅ Zero-Knowledge Architecture
+- ✅ AES-256-GCM encryption
+- ✅ JWT token-based auth
+- ✅ Bcrypt password hashing
+- ✅ HTTPS/TLS ready
+- ✅ Rate limiting
+- ✅ SQL injection protection
+
+## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Development setup
+- Commit conventions
+- Pull request process
+- Code style guidelines
+
+### Quick Contribute
+
+```bash
+git checkout -b feat/your-feature
+git commit -m "feat(component): description"
+git push origin feat/your-feature
+# Create Pull Request
+```
+
+## Roadmap
+
+- [ ] Advanced analytics & insights
+- [ ] Mobile app (React Native)
+- [ ] Multi-factor authentication (MFA)
+- [ ] Crypto asset management
+- [ ] Social recovery of accounts
+
+## FAQ
+
+**Is Coredex open source?**  
+Yes! Licensed under MIT.
+
+**Can I self-host?**  
+Yes! Docker Compose included.
+
+**Is my data encrypted?**  
+Yes! Zero-Knowledge architecture.
+
+See [FAQ](docs/FAQ.md) for more.
+
+## Support
+
+- 📧 Email: `support@coredex.example.com`
+- 🐛 Issues: [GitHub Issues](https://github.com/ErmolaevDev/Coredex/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/ErmolaevDev/Coredex/discussions)
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+**Made with ❤️ for families who deserve privacy**
+
+⭐ Star us on GitHub if you find Coredex useful!
 # COREDEx Platform
 
 Современное решение для управления семейными финансами и цифровыми активами с единой панелью и безопасной бэкенд-архитектурой.  
